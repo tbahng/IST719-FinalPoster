@@ -218,10 +218,11 @@ df[df$full_name %in% top.names,c('full_name','birth_year')]
 # treemap of popularity by sex and occupation
 #########################################################
 
-pdf_file <- 'plots/treemap_hpi_by_occupation_sex.pdf'
-cairo_pdf(bg="grey98", pdf_file, width=11.69, height=7.5)
+#pdf_file <- 'plots/treemap_hpi_by_occupation_sex.pdf'
+#cairo_pdf(bg="grey98", pdf_file, width=15.9, height=7.5)
 par(omi=c(0.55,0.25,1.15,0.75), las=1)
-plot.new()
+#par(omi=c(1.1,0.5,2.3,1.5), las=1)
+#plot.new()
 
 group <- df$sex
 subgroup <- df$occupation
@@ -235,13 +236,13 @@ treemap(
   , vSize = "value"
   , type = "index"
   , title = ""
-  , fontsize.labels = c(36,12)
-  , aspRatio = 1.9
+  , fontsize.labels = c(48,24)
+  , aspRatio = 2.1
 )
-mtext("Occupations by Gender", side=3, line=3.8, adj=0, cex=2.2, outer = TRUE) # title
-mtext("(Multidimensional) Size: Historical Popularity Index", side=3, line=2.3, adj=0, cex=1.5, outer = TRUE) # subtitle
-mtext("Source: pantheon-project | Thomas Bahng", side = 1, line = 1, adj = 1, cex = 0.8, family = 'serif', outer = TRUE) # source
-dev.off()
+#mtext("Occupations by Gender", side=3, line=3.8, adj=0, cex=2.2, outer = TRUE) # title
+#mtext("(Multidimensional) Size: Historical Popularity Index", side=3, line=2.3, adj=0, cex=1.5, outer = TRUE) # subtitle
+#mtext("Source: pantheon-project | Thomas Bahng", side = 1, line = 1, adj = 1, cex = 0.8, family = 'serif', outer = TRUE) # source
+#dev.off()
 # a stark contrast can be seen between typical occupations for males and females
 
 #########################################################

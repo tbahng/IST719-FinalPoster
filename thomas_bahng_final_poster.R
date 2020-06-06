@@ -1,6 +1,7 @@
 #########################################################
 # Thomas bahng
-# IST 719 Final Poster Code
+# IST 719 IST719-M401
+# Final Poster Code
 # Title: Gender Roles and Popularity in Human History
 #########################################################
 library(ggplot2)
@@ -20,9 +21,20 @@ library(rpart.plot)
 library(ggpubr)
 library(viridis)
 
-# read data
+# Data Description
+# The data set is an index of historical figures from 
+# Wikipedia consisting of 11341 observations and 17 variables. 
+# It was developed by the Macro Connections group at the Massachusetts 
+# Institute of Technology Media Lab and made available on Kaggle, 
+# Pantheon Project: Historical Popularity Index.
 # download from https://www.kaggle.com/mit/pantheon-project
-df <- read.csv('database.csv', stringsAsFactors = FALSE)
+
+# Poster Story
+# Recorded human history has existed for over 5000 years, and key
+# figures have lived dispersed throughout time and societal roles
+
+# read data
+df <- read.csv('data/database.csv', stringsAsFactors = FALSE)
 
 # structure of data
 str(df)
@@ -32,6 +44,7 @@ number_of_columns <- ncol(df)
 number_of_rows <- nrow(df)
 score <- (number_of_columns * 4) * (number_of_rows / 100)
 print(score)
+# 7711
 
 #########################################################
 # Cleaning
@@ -40,7 +53,6 @@ print(score)
 numeric_birth_year <- as.numeric(df$birth_year) # try conversion
 idx <- which(is.na(numeric_birth_year)) # indices of incorrect values
 df$birth_year[idx] # inspect incorrect values
-#View(df[idx,])
 df$birth_year <- numeric_birth_year
 
 # assign unknown or missing values to unspecified: continent
@@ -53,45 +65,35 @@ df$country[df$country == 'Unknown' | df$country == ''] <- 'Unspecified'
 # color options
 #########################################################
 my.colors <- c('#372759','#8491D9','#F2F2F2','#8C8C8C','#590B0B')
-show_col(my.colors)
+
 # https://en.wikipedia.org/wiki/Main_Page
 wiki.colors <- c('#F2F2F2','#A4A5A6','#737373','#404040','#0D0D0D')
-show_col(wiki.colors)
+
 # https://pantheon.world/explore/viz?viz=map&show=occupations&years=-3501,2015&place=dnk
 panth.colors <- c('#1A2873','#66B1F2','#F2EDA7','#F2F2F2','#A66226')
-show_col(panth.colors)
-# tree
+
+# tree map default colors
 tree.colors <- c('#D973AB','#AE84D9','#03A678','#97A624','#A68D14')
-show_col(tree.colors)
-# gender colors
+
+# gender colors - derived from tree map colors
 gender.cols <- c('male' = '#AE84D9', 'female' = '#03A678')
 single.dim.col <- "#590B0B"
-show_col(gender.cols)
-show_col(single.dim.col)
-# exemplar colors
+
+# exemplar colors - from class
 exemplar.colors <- c('#F2293A','#595859','#1763A6','#3CA64C','#A63333')
-show_col(exemplar.colors)
+
+# not all colors defined are used in project
+# show_col(my.colors)
+# show_col(wiki.colors)
+# show_col(panth.colors)
+# show_col(tree.colors)
+# show_col(gender.cols)
+# show_col(single.dim.col)
+# show_col(exemplar.colors)
 
 #########################################################
-# Histogram of Historical Popularity Index
+# Gender Distribution
 #########################################################
-par(mar = c(5, 5, 4, 2) + 0.1)
-hist(
-  df$historical_popularity_index
-  , col = single.dim.col
-  , las = 2
-  , main = "Distribution of Historical Popularity Index"
-  , xlab = "Historical Popularity Index"
-  , border = 'white'
-)
-par(mar = c(5, 4, 4, 2) + 0.1)
-summary(df$historical_popularity_index)
-
-
-# overall distribution of popularity
-p1 <- ggplot(df, aes(historical_popularity_index)) +
-  geom_density(fill = single.dim.col)
-
 # distribution of HPI by gender
 mu <- ddply(df, 'sex', summarise, grp.mean = mean(historical_popularity_index))
 p2 <- ggplot(df, aes(historical_popularity_index, fill = sex)) +

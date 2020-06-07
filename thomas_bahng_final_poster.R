@@ -183,6 +183,7 @@ barplot(
 par(mar = c(5, 4, 4, 2) + 0.1)
 dat
 most_popular <- names(dat)
+# some individual names are duplicated, skewing the popularity measure.
 
 # by gender
 dat <- ddply(df, .(full_name, sex), summarise, value = mean(historical_popularity_index))

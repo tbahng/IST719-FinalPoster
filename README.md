@@ -6,11 +6,37 @@ The objective of this project is a culmination of course learnings to create an 
 Content follows graphic design principles concerning color, typeface, and layout.
 The visualizations/plots are primarily created using R, and then Adobe Illustrator is used for creating the final poster.
 
-About the data:
-The data set is an index of historical figures from Wikipedia. 
-It was created from the Pantheon Project, developed by the Macro Connections group at the Massachusetts Institute of Technology Media Lab. 
-The download is available from https://www.kaggle.com/mit/pantheon-project. 
-Each observation represents a historical figure for whom there are 17 attributes, including a historical popularity index.
+Title: Gender Roles and Popularity in Human History
+
+Data Description
+The data set is an index of historical figures from Wikipedia consisting of 11341
+observations and 17 variables. It was developed by the Macro Connections group at the
+Massachusetts Institute of Technology Media Lab and made available on Kaggle,
+Pantheon Project: Historical Popularity Index.
+
+The Story
+Recorded human history has existed for over 5000 years, and key figures have lived
+dispersed throughout time and societal roles. This poster explores how gender diversity
+in historic figures has evolved over time, and offers a glimpse into how people today
+perceive their popularity.
+
+The Audience & Motivation
+There is a general consensus in sociological research that certain occupations are
+gendered. Historians, sociologists, and students can observe the impacts of famous
+individuals through the perspective of gender on their footprint in time as well as on
+societal roles today.
+
+Research Questions
+- Question 1: What is the distribution of males and females?
+	– Descriptive Viz: Distribution by Gender
+	– Descriptive Viz: Distribution of Popularity by Gender
+- Question 2: When did the most memorable people live and how has the demographic changed over time?
+	– Descriptive Viz: Timeline of Historical Popularity by Gender
+- Question 3: What is the relationship between gender and occupation?
+	– Key Viz: Treemap of Historical Popularity Index by Gender and Occupations
+- Question 4: How does gender, age, and domain influence historical popularity?
+	– Supporting Viz: Balloon Plot of Categorical Comparisons by Gender
+	– Supporting Viz: Decision Tree of Historical Popularity
 
 Code is provided for plot and insight reproducibility.
 

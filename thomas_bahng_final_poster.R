@@ -213,7 +213,15 @@ top.names = c(
   'Aristotle','Plato','Jesus Christ','Socrates','Alexander the Great',
   'Cleopatra VII of Egypt','Nefertiti',"Jeanne d'Arc","Mary","Sappho"
 )
-df[df$full_name %in% top.names,c('full_name','birth_year')]
+col.keep <- c('full_name','sex','birth_year','occupation','historical_popularity_index')
+df[df$full_name %in% top.names, col.keep]
+
+# Most popular males from 1800 to present
+df[df$sex == 'Male' & df$birth_year >= 1800, col.keep] %>%
+  .[order(.$historical_popularity_index, decreasing = TRUE),] %>% head()
+# Most popular females from 1800 to present
+df[df$sex == 'Female' & df$birth_year >= 1800, col.keep] %>%
+  .[order(.$historical_popularity_index, decreasing = TRUE),] %>% head()
 #########################################################
 # treemap of popularity by sex and occupation
 #########################################################
